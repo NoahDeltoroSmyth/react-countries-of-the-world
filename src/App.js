@@ -1,8 +1,10 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
 import { getCountries } from '../src/services/countries';
+import CountriesCard from './components/CountriesCard/CountriesCard';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -15,9 +17,12 @@ function App() {
     grabData();
   }, []);
   return (
-    <section className="main">
+    <section>
       <Header />
       <Footer />
+      {countries.map((c) => (
+        <CountriesCard key={c.name} {...c} />
+      ))}
     </section>
   );
 }
