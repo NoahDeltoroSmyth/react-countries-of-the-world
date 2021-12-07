@@ -8,6 +8,7 @@ import CountriesCard from './components/CountriesCard/CountriesCard';
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [query, setQuery] = useState('');
   useEffect(() => {
     const grabData = async () => {
       const data = await getCountries();
@@ -16,13 +17,23 @@ function App() {
     };
     grabData();
   }, []);
+
+  const filterCountries = () => {
+    return countries.filter((c) => c.name.includes(query));
+  };
   return (
     <section>
       <Header />
-      <Footer />
-      {countries.map((c) => (
+      <input
+        type="text"
+        placeholder="Search for a country"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      {filterCountries().map((c) => (
         <CountriesCard key={c.name} {...c} />
       ))}
+      <Footer />
     </section>
   );
 }
