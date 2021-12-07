@@ -1,0 +1,10 @@
+.countries-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  padding: 10px;
+  margin: 10px;
+}
