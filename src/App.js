@@ -9,6 +9,8 @@ import CountriesCard from './components/CountriesCard/CountriesCard';
 function App() {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState('');
+  const [continent, setContinent] = useState('All');
+
   useEffect(() => {
     const grabData = async () => {
       const data = await getCountries();
@@ -19,7 +21,9 @@ function App() {
   }, []);
 
   const filterCountries = () => {
-    return countries.filter((c) => c.name.includes(query));
+    return countries.filter(
+      (c) => c.name.includes(query) && (c.continent === continent || continent === 'All')
+    );
   };
   return (
     <section>
@@ -30,6 +34,16 @@ function App() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+      <select value={continent} onChange={(e) => setContinent(e.target.value)}>
+        <option value="All">All</option>
+        <option value="Asia">Asia</option>
+        <option value="Africa">Africa</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Antartica">Antartica</option>
+        <option value="Europe">Europe</option>
+        <option value="Australia">Australia</option>
+      </select>
       {filterCountries().map((c) => (
         <CountriesCard key={c.name} {...c} />
       ))}
