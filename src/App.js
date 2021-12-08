@@ -20,11 +20,10 @@ function App() {
     grabData();
   }, []);
 
-  const filterCountries = () => {
-    return countries.filter(
-      (c) => c.name.includes(query) && (c.continent === continent || continent === 'All')
-    );
-  };
+  const filterCountries = countries.filter(
+    (c) => c.name.includes(query) && (c.continent === continent || continent === 'All')
+  );
+  console.log(filterCountries);
   return (
     <section>
       <Header />
@@ -40,11 +39,9 @@ function App() {
         <option value="Africa">Africa</option>
         <option value="North America">North America</option>
         <option value="South America">South America</option>
-        <option value="Antartica">Antartica</option>
         <option value="Europe">Europe</option>
-        <option value="Australia">Australia</option>
       </select>
-      {filterCountries().map((c) => (
+      {filterCountries.map((c) => (
         <CountriesCard key={c.name} {...c} />
       ))}
       <Footer />

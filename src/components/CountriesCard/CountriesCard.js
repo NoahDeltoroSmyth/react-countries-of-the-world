@@ -8,7 +8,7 @@ export default function CountriesCard({ name, iso2 }) {
         <div className="name">{name}</div>
       </div>
       <div className="image">
-        <img src={iso2} />
+        <img src={`https://flagcdn.com/16x12/${iso2.toLowerCase()}.png`} />
       </div>
     </div>
   );
