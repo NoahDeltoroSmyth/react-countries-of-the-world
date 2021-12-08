@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     const grabData = async () => {
       const data = await getCountries();
-      console.log(data);
       setCountries(data);
     };
     grabData();
@@ -23,7 +22,6 @@ function App() {
   const filterCountries = countries.filter(
     (c) => c.name.includes(query) && (c.continent === continent || continent === 'All')
   );
-  console.log(filterCountries);
   return (
     <section>
       <Header />
@@ -40,10 +38,14 @@ function App() {
         <option value="North America">North America</option>
         <option value="South America">South America</option>
         <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
+        <option value="Antarctica">Antarctica</option>
       </select>
-      {filterCountries.map((c) => (
-        <CountriesCard key={c.name} {...c} />
-      ))}
+      <section className="container">
+        {filterCountries.map((c) => (
+          <CountriesCard key={c.name} {...c} />
+        ))}
+      </section>
       <Footer />
     </section>
   );

@@ -4,11 +4,11 @@ import './CountriesCard.css';
 export default function CountriesCard({ name, iso2 }) {
   return (
     <div className="countries-card">
-      <div className="detail">
-        <div className="name">{name}</div>
+      <div className="name">
+        <h3>{name}</h3>
       </div>
       <div className="image">
-        <img src={`https://flagcdn.com/16x12/${iso2.toLowerCase()}.png`} />
+        <img src={`https://flagcdn.com/72x54/${iso2.toLowerCase()}.png`} />
       </div>
     </div>
   );

@@ -1,7 +1,17 @@
 .countries-card {
+  width: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  border: maroon 3px solid;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.image {
+  padding: 10px;
+  margin: 10px;
 }
 
 .name {
