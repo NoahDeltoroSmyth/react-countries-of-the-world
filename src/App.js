@@ -20,7 +20,9 @@ function App() {
   }, []);
 
   const filterCountries = countries.filter(
-    (c) => c.name.includes(query) && (c.continent === continent || continent === 'All')
+    (c) =>
+      c.name.toLowerCase().includes(query) ||
+      (c.name.includes(query) && (c.continent === continent || continent === 'All'))
   );
   return (
     <section>
