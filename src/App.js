@@ -10,20 +10,35 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState('');
   const [continent, setContinent] = useState('All');
+  const [order, setOrder] = useState('asc');
 
   useEffect(() => {
     const grabData = async () => {
       const data = await getCountries();
       setCountries(data);
+      // console.log(data);
     };
     grabData();
   }, []);
 
-  const filterCountries = countries.filter(
-    (c) =>
-      c.name.toLowerCase().includes(query) ||
-      (c.name.includes(query) && (c.continent === continent || continent === 'All'))
-  );
+  const filterCountries = countries
+    .filter(
+      (c) =>
+        (c.name.toLowerCase().includes(query) || c.name.includes(query)) &&
+        (c.continent === continent || continent === 'All')
+    )
+    .sort((a, b) => {
+      if (order === 'a-z') {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      } else {
+        if (a.name < b.name) return 1;
+        if (a.name > b.name) return -1;
+        return 0;
+      }
+    });
+
   return (
     <section>
       <Header />
@@ -42,6 +57,10 @@ function App() {
         <option value="Europe">Europe</option>
         <option value="Oceania">Oceania</option>
         <option value="Antarctica">Antarctica</option>
+      </select>
+      <select className="order" value={order} onChange={(e) => setOrder(e.target.value)}>
+        <option value="a-z">a-z</option>
+        <option value="z-a">z-a</option>
       </select>
       <section className="container">
         {filterCountries.map((c) => (
